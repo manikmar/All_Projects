@@ -1,0 +1,66 @@
+server:
+  port: 8082
+
+spring:
+  profiles:
+    active: "dev"
+---
+logging:
+  level:
+    org.springframework: info
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - "*"
+spring:
+  profiles: "dev"
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+#  main:
+#    banner-mode: off
+  output:
+    ansi:
+      enabled: ALWAYS
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/evan
+    username: root
+    password: Database@19
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: true
+---
+logging:
+  level:
+    org.springframework: info
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - "*"
+spring:
+  profiles: "qa"
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  #  main:
+  #    banner-mode: off
+  output:
+    ansi:
+      enabled: ALWAYS
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/evan
+    username: root
+    password: Database@19
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: true
