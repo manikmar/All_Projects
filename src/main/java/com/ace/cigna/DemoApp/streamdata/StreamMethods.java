@@ -1,5 +1,6 @@
 package com.ace.cigna.DemoApp.streamdata;
 
+import com.ace.cigna.DemoApp.entity.Employee;
 import com.ace.cigna.DemoApp.entity.StudentData;
 
 import java.util.*;
@@ -24,14 +25,44 @@ public class StreamMethods {
         //findTotalNumberOfElements();
         //flatMapExample();
         //sortMap();
-        //findDuplicatesInList();
+       // findDuplicatesInList();
         //streamIsNotReuseButTryToReuseBySupplier();
         //findNumberOfItemsOrWordRepeated();
         //sumOfNumbers();
         //findSecondHighestNumber();
         //reduceMethodTest();
-        reverseSentenceWordByWord();
+        //reverseSentenceWordByWord();
 
+        //countDuplicatesCharInString();
+        testEmployeeWithOutComparator();
+
+    }
+
+    public static void testEmployeeWithOutComparator(){
+        List<Employee> empList = new ArrayList<>();
+        Employee emp1 = new Employee(1,"Evan",30,1000);
+        Employee emp2 = new Employee(2,"Ethan",32,9000);
+        Employee emp3 = new Employee(3,"Arya",33,12000);
+        Employee emp4 = new Employee(4,"Prasanth",30,1700);
+        Employee emp5 = new Employee(5,"Suhan",45,20000);
+        empList.add(emp1);
+        empList.add(emp2);
+        empList.add(emp3);
+        empList.add(emp4);
+        empList.add(emp5);
+       // empList.stream().sorted(Comparator.comparing(Employee::getSalary)).forEach(System.out::println);
+
+        //print max salary
+        Employee employee = empList.stream()
+                .collect(Collectors.maxBy(Comparator.comparing(Employee::getSalary))).get();
+        System.out.println(employee);
+    }
+
+    public static void countDuplicatesCharInString(){
+        String input = "Hello World";
+        Map<String, Long> collect = input.chars().mapToObj(x -> (char) x)
+                .collect(Collectors.groupingBy(Objects::toString, Collectors.counting()));
+        collect.forEach((k,v) -> System.out.println("key :: "+k+" ----- Value :: "+v));
     }
 
     /**
@@ -127,7 +158,15 @@ public class StreamMethods {
      */
     public static void findDuplicatesInList(){
         Set<Integer> set = new HashSet<>();
-        getNumbers().stream().filter(l -> !set.add(l)).forEach(System.out::print);
+       // getNumbers().stream().filter(l -> !set.add(l)).forEach(System.out::print);
+
+        Set<Integer> collect = getNumbers().stream().filter(e -> Collections.frequency(getNumbers(), e) > 1)
+                .collect(Collectors.toSet());
+        System.out.println(collect);
+
+        //Remove duplicates
+        //System.out.println("");
+       // getNumbers().stream().distinct().forEach(System.out::print);
     }
 
 

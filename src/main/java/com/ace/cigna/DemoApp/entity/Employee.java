@@ -12,4 +12,5 @@ public class Employee {
     private int empId;
     private String empName;
     private int empAge;
+    private int salary;
 }
