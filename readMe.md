@@ -21,6 +21,3 @@ spring:
         matching-strategy: ANT_PATH_MATCHER
 then launch the swagger : http://localhost:8080/swagger-ui.html
 
-
-
-
