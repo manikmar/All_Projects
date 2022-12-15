@@ -63,6 +63,7 @@ public class StreamMethods {
         Map<String, Long> collect = input.chars().mapToObj(x -> (char) x)
                 .collect(Collectors.groupingBy(Objects::toString, Collectors.counting()));
         collect.forEach((k,v) -> System.out.println("key :: "+k+" ----- Value :: "+v));
+        System.out.println("Hii...");
     }
 
     /**
